@@ -122,18 +122,11 @@ check_prerequisites() {
         missing_deps+=("Git")
     fi
     
-    # Check pip and pipx
+    # Check pip
     if command_exists pip3; then
         print_success "pip3 found"
     else
         missing_deps+=("pip3")
-    fi
-
-    # Check for pipx (preferred for installing aider)
-    if command_exists pipx; then
-        print_success "pipx found"
-    else
-        print_warning "pipx not found - will install it"
     fi
     
     # Check if VS Code is installed
@@ -156,50 +149,55 @@ check_prerequisites() {
     print_success "All prerequisites met!"
 }
 
-# Install Aider
+# Install Aider (non-blocking - will provide manual instructions if fails)
 install_aider() {
-    print_header "Installing Aider"
+    print_header "Setting Up Aider"
 
-    # Install pipx if not present
-    if ! command_exists pipx; then
-        print_message "$YELLOW" "Installing pipx..."
-        $PYTHON_CMD -m pip install --user --break-system-packages pipx
-        $PYTHON_CMD -m pipx ensurepath
+    print_message "$YELLOW" "Note: If automatic installation fails, you can install Aider manually in VS Code"
+    echo ""
 
-        # Add pipx directories to current PATH immediately
-        export PATH="$HOME/.local/bin:$HOME/Library/Python/3.13/bin:$PATH"
+    # Try to install with pip in user mode (simpler than pipx)
+    print_message "$YELLOW" "Attempting to install aider-chat..."
 
-        # Verify pipx is now available
-        if ! command_exists pipx; then
-            print_error "pipx installation failed or not in PATH"
-            echo "Please run: export PATH=\"\$HOME/.local/bin:\$PATH\" and try again"
-            exit 1
+    if $PYTHON_CMD -m pip install --user --break-system-packages aider-chat 2>/dev/null; then
+        export PATH="$HOME/.local/bin:$PATH"
+
+        if command_exists aider; then
+            AIDER_VERSION=$(aider --version 2>&1 | head -n1 || echo "installed")
+            print_success "Aider installed successfully: $AIDER_VERSION"
+            return 0
         fi
-
-        print_success "pipx installed and ready"
     fi
 
-    # Install aider using pipx (handles virtual environment automatically)
-    print_message "$YELLOW" "Installing aider using pipx (this may take a few minutes)..."
-    print_message "$YELLOW" "pipx creates an isolated environment, avoiding dependency conflicts..."
-
-    if command_exists aider; then
-        print_warning "Aider already installed, upgrading..."
-        pipx upgrade aider --python $PYTHON_CMD 2>&1 || \
-        pipx install aider --python $PYTHON_CMD --force
-    else
-        pipx install aider --python $PYTHON_CMD
-    fi
-
-    # Verify installation
-    if command_exists aider; then
-        AIDER_VERSION=$(aider --version 2>&1 | head -n1 || echo "unknown")
-        print_success "Aider installed successfully: $AIDER_VERSION"
-    else
-        print_error "Aider installation failed"
-        echo "Try running: export PATH=\"\$HOME/.local/bin:\$PATH\""
-        exit 1
-    fi
+    # If automatic installation failed, provide manual instructions
+    print_warning "Automatic aider installation encountered issues (Python version compatibility)"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "📝 MANUAL INSTALLATION INSTRUCTIONS"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "Don't worry! You can use AI coding through VS Code extensions:"
+    echo ""
+    echo "Option 1: Install Continue (Recommended)"
+    echo "  1. Open VS Code"
+    echo "  2. Go to Extensions (Cmd+Shift+X)"
+    echo "  3. Search for 'Continue'"
+    echo "  4. Install and configure with your API key"
+    echo ""
+    echo "Option 2: Install Cline"
+    echo "  1. Open VS Code"
+    echo "  2. Search for 'Cline' in Extensions"
+    echo "  3. Install and configure"
+    echo ""
+    echo "Option 3: Try aider later with Python 3.11"
+    echo "  brew install python@3.11"
+    echo "  python3.11 -m pip install --user aider-chat"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "The setup will continue to create all workflow scripts and configuration..."
+    echo ""
+    sleep 3
 }
 
 # Get OpenRouter API Key
