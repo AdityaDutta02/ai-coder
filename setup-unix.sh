@@ -116,14 +116,18 @@ check_prerequisites() {
 # Install Aider
 install_aider() {
     print_header "Installing Aider"
-    
+
+    # First, upgrade pip, setuptools, and wheel to avoid build issues
+    print_message "$YELLOW" "Upgrading pip, setuptools, and wheel..."
+    pip3 install --upgrade --user pip setuptools wheel
+
     if command_exists aider; then
         print_warning "Aider already installed, upgrading..."
         pip3 install --upgrade --user aider-chat
     else
         pip3 install --user aider-chat
     fi
-    
+
     print_success "Aider installed successfully"
 }
 

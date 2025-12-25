@@ -105,7 +105,11 @@ function Test-Prerequisites {
 # Install Aider
 function Install-Aider {
     Write-Header "Installing Aider"
-    
+
+    # First, upgrade pip, setuptools, and wheel to avoid build issues
+    Write-Warning "Upgrading pip, setuptools, and wheel..."
+    pip install --upgrade --user pip setuptools wheel
+
     try {
         aider --version 2>&1 | Out-Null
         Write-Warning "Aider already installed, upgrading..."
@@ -113,7 +117,7 @@ function Install-Aider {
     } catch {
         pip install --user aider-chat
     }
-    
+
     Write-Success "Aider installed successfully"
 }
 
