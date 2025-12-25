@@ -1090,6 +1090,15 @@ Want to use VS Code instead?
 Questions?
   → Check: ~/.ai-coding-setup/README.md
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🗑️  TO UNINSTALL EVERYTHING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If you want to remove the AI coding setup completely:
+  bash uninstall.sh
+
+This will remove everything except VS Code and backs up your API key.
+
 COMPLETIONEOF
 
     print_message "$GREEN" "🚀 You're all set! Restart your terminal to begin!"
