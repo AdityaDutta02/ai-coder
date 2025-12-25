@@ -155,13 +155,13 @@ install_aider() {
 
     # First, upgrade pip, setuptools, and wheel to avoid build issues
     print_message "$YELLOW" "Upgrading pip, setuptools, and wheel using $PYTHON_CMD..."
-    $PYTHON_CMD -m pip install --upgrade --user pip setuptools wheel
+    $PYTHON_CMD -m pip install --upgrade --user --break-system-packages pip setuptools wheel
 
     if command_exists aider; then
         print_warning "Aider already installed, upgrading..."
-        $PYTHON_CMD -m pip install --upgrade --user aider-chat
+        $PYTHON_CMD -m pip install --upgrade --user --break-system-packages aider-chat
     else
-        $PYTHON_CMD -m pip install --user aider-chat
+        $PYTHON_CMD -m pip install --user --break-system-packages aider-chat
     fi
 
     print_success "Aider installed successfully"
