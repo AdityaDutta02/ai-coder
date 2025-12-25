@@ -1000,41 +1000,99 @@ VSCODEEOF
 # Print completion message
 print_completion() {
     print_header "Installation Complete! 🎉"
-    
+
     cat << 'COMPLETIONEOF'
 
-Your AI coding setup is ready! Here's how to use it:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 WHAT YOU NEED TO DO NOW (3 Simple Steps)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📝 CREATE NEW PROJECT:
-  ai-new-project "My Amazing App"
+STEP 1: Restart Your Terminal
+   Close this terminal window and open a new one
+   (This makes the new commands work)
 
-🔄 ONBOARD EXISTING PROJECT:
-  cd /path/to/project
-  ai-onboard
+STEP 2: Test if it's working
+   Type this command:
+   ai-dev --help
 
-🎯 MULTI-PHASE DEVELOPMENT (Recommended):
-  ai-conductor "Add real-time chat feature"
+   If you see help text = SUCCESS! ✅
+   If you see "command not found" = Run this:
+   source ~/.zshrc
 
-💻 QUICK COMMANDS:
-  ai-plan "description"     - Generate development plan
-  ai-code "task"           - Implement feature
-  ai-test "what to test"   - Write tests
-  ai-debug "issue"         - Debug problems
-  ai-dev                   - Interactive development
+STEP 3: Choose how to use AI coding
 
-📚 DOCUMENTATION:
-  Full guide: ~/.ai-coding-setup/AI_CODING_SETUP_COMPLETE_GUIDE.md
+   Option A - Use in Terminal (if aider installed):
+     cd /path/to/your/project
+     ai-dev
 
-🚀 GETTING STARTED:
-  1. Try: ai-new-project "Test App"
-  2. Follow the prompts
-  3. Watch the AI build your app!
+   Option B - Use in VS Code (easier!):
+     1. Open VS Code
+     2. Press Cmd+Shift+X (Extensions)
+     3. Search for "Continue"
+     4. Click Install
+     5. Add your OpenRouter API key when prompted
 
-Need help? Check the troubleshooting section in the guide.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ PENDING TASKS (Do these when you have time)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 COMPLETIONEOF
 
-    print_message "$GREEN" "Happy coding! 🚀"
+    # Check if aider was installed
+    if ! command_exists aider; then
+        cat << 'AIDEREOF'
+[ ] Install AI Coding Extension in VS Code
+    → Open VS Code
+    → Search Extensions for "Continue"
+    → Install and add your API key
+
+AIDEREOF
+    fi
+
+    # Check if VS Code extension needs manual install
+    if ! command_exists code; then
+        cat << 'VSCODEEOF'
+[ ] Install VS Code (if you want to use it)
+    → Download from: https://code.visualstudio.com/
+
+VSCODEEOF
+    fi
+
+    cat << 'COMPLETIONEOF'
+[ ] Save Your API Key Somewhere Safe
+    → It's in: ~/.aider.conf.yml
+    → You'll need it for VS Code extensions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎮 AVAILABLE COMMANDS (After restarting terminal)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In your project folder, you can type:
+
+  ai-dev                    Start coding with AI
+  ai-plan "feature idea"    Get a development plan
+  ai-code "what to build"   Build something
+  ai-test "what to test"    Write tests
+  ai-debug "bug description" Fix bugs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🆘 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"command not found" error?
+  → Close and reopen your terminal
+  → OR run: source ~/.zshrc
+
+Want to use VS Code instead?
+  → Much easier! Install "Continue" extension
+  → No terminal needed
+
+Questions?
+  → Check: ~/.ai-coding-setup/README.md
+
+COMPLETIONEOF
+
+    print_message "$GREEN" "🚀 You're all set! Restart your terminal to begin!"
     echo ""
 }
 
