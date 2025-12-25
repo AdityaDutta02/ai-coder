@@ -166,8 +166,17 @@ install_aider() {
         $PYTHON_CMD -m pip install --user --break-system-packages pipx
         $PYTHON_CMD -m pipx ensurepath
 
-        # Add pipx to current PATH
-        export PATH="$HOME/.local/bin:$PATH"
+        # Add pipx directories to current PATH immediately
+        export PATH="$HOME/.local/bin:$HOME/Library/Python/3.13/bin:$PATH"
+
+        # Verify pipx is now available
+        if ! command_exists pipx; then
+            print_error "pipx installation failed or not in PATH"
+            echo "Please run: export PATH=\"\$HOME/.local/bin:\$PATH\" and try again"
+            exit 1
+        fi
+
+        print_success "pipx installed and ready"
     fi
 
     # Install aider using pipx (handles virtual environment automatically)
