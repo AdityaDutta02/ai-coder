@@ -73,9 +73,34 @@ check_prerequisites() {
     # Check Python
     if command_exists python3; then
         PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
+        PYTHON_MAJOR=$(echo "$PYTHON_VERSION" | cut -d'.' -f1)
+        PYTHON_MINOR=$(echo "$PYTHON_VERSION" | cut -d'.' -f2)
+
         print_success "Python $PYTHON_VERSION found"
+
+        # Check if Python version is 3.14 or higher (incompatible with aider-chat dependencies)
+        if [ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -ge 14 ]; then
+            print_error "Python 3.14+ is not yet supported by aider-chat dependencies"
+            echo ""
+            echo "Aider requires Python 3.11-3.13 due to compatibility issues with numpy and other compiled dependencies."
+            echo ""
+            echo "Solutions:"
+            echo "  1. Install Python 3.13: brew install python@3.13"
+            echo "  2. Use pyenv to manage multiple Python versions: pyenv install 3.13"
+            echo "  3. Create a virtual environment with Python 3.13"
+            echo ""
+            echo "After installing Python 3.13, run this script using:"
+            echo "  python3.13 setup-unix.sh"
+            echo ""
+            exit 1
+        fi
+
+        # Check minimum version
+        if [ "$PYTHON_MAJOR" -lt 3 ] || ([ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -lt 8 ]); then
+            missing_deps+=("Python 3.8+ (you have $PYTHON_VERSION)")
+        fi
     else
-        missing_deps+=("Python 3.8+")
+        missing_deps+=("Python 3.8-3.13")
     fi
     
     # Check Git

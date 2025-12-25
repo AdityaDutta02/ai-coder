@@ -61,10 +61,37 @@ function Test-Prerequisites {
     
     # Check Python
     try {
-        $pythonVersion = python --version 2>&1
-        Write-Success "Python found: $pythonVersion"
+        $pythonVersionOutput = python --version 2>&1
+        Write-Success "Python found: $pythonVersionOutput"
+
+        # Extract version number (e.g., "Python 3.14.0" -> "3.14.0")
+        if ($pythonVersionOutput -match 'Python (\d+)\.(\d+)\.(\d+)') {
+            $pythonMajor = [int]$matches[1]
+            $pythonMinor = [int]$matches[2]
+
+            # Check if Python version is 3.14 or higher (incompatible with aider-chat dependencies)
+            if ($pythonMajor -eq 3 -and $pythonMinor -ge 14) {
+                Write-Error "Python 3.14+ is not yet supported by aider-chat dependencies"
+                Write-Host ""
+                Write-Host "Aider requires Python 3.11-3.13 due to compatibility issues with numpy and other compiled dependencies."
+                Write-Host ""
+                Write-Host "Solutions:"
+                Write-Host "  1. Install Python 3.13 from: https://www.python.org/downloads/"
+                Write-Host "  2. Use pyenv-win to manage multiple Python versions"
+                Write-Host "  3. Install via Microsoft Store (search for Python 3.13)"
+                Write-Host ""
+                Write-Host "After installing Python 3.13, ensure it's in your PATH and run this script again."
+                Write-Host ""
+                exit 1
+            }
+
+            # Check minimum version
+            if ($pythonMajor -lt 3 -or ($pythonMajor -eq 3 -and $pythonMinor -lt 8)) {
+                $missingDeps += "Python 3.8-3.13 (you have $pythonVersionOutput)"
+            }
+        }
     } catch {
-        $missingDeps += "Python 3.8+"
+        $missingDeps += "Python 3.8-3.13"
     }
     
     # Check Git
