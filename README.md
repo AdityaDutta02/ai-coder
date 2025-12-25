@@ -1,678 +1,466 @@
-# 🤖 AI Coder - Production AI Development Toolkit
+# 🤖 AI Coder - Free AI Coding Environment
 
-<div align="center">
+> Build production apps using 100% free AI models - No subscriptions needed!
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)
 ![Cost](https://img.shields.io/badge/cost-$0-brightgreen.svg)
-
-**Build complex production applications with free, top-tier AI models**
-
-Recreate the power of Cursor and Claude Code using 100% free models from OpenRouter
-
-[Quick Start](#-quick-start) • [Features](#-features) • [Installation](#-installation) • [Documentation](#-documentation) • [Examples](#-usage-examples)
-
-</div>
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)
 
 ---
 
-## 📖 Table of Contents
+## 🎯 What Is This?
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Quick Start](#-quick-start)
-- [Installation](#-installation)
-- [Usage](#-usage)
-  - [New Projects](#new-projects)
-  - [Existing Projects](#existing-projects)
-  - [Development Workflow](#development-workflow)
-- [System Architecture](#-system-architecture)
-- [Configuration](#-configuration)
-- [Usage Examples](#-usage-examples)
-- [Cost Comparison](#-cost-comparison)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
-- [License](#-license)
+This toolkit sets up **free AI coding** on your computer. You get:
+- ✅ **$0/month** - Completely free, no credit card needed
+- ✅ **AI that writes code** - Like GitHub Copilot or Cursor, but free
+- ✅ **Multiple AI models** - Choose the best model for each task
+- ✅ **Works in terminal OR VS Code** - Pick your style
 
 ---
 
-## 🎯 Overview
+## 🚀 Super Quick Start (5 Minutes)
 
-**AI Coder** is a production-ready toolkit that democratizes AI-assisted software development by providing a complete, zero-cost setup using cutting-edge free models from OpenRouter. It eliminates the $20-25/month cost of premium AI coding tools while maintaining professional-grade code generation and development workflows.
+### Step 1: Get a Free API Key
+1. Go to [OpenRouter.ai/keys](https://openrouter.ai/keys)
+2. Sign up (free!)
+3. Create a new API key
+4. Copy it
 
-### Why AI Coder?
+### Step 2: Install
+```bash
+git clone https://github.com/AdityaDutta02/ai-coder.git
+cd ai-coder
+bash setup-unix.sh
+```
 
-- ✅ **100% Free** - No subscriptions, no hidden costs
-- ✅ **Unlimited Usage** - No request limits or daily caps
-- ✅ **Production-Ready** - Battle-tested prompts and workflows
-- ✅ **Multi-Phase Development** - Automated planning, coding, testing, and optimization
-- ✅ **Git Integration** - Automatic version control with smart commits
-- ✅ **IDE Support** - Works with VS Code, Aider CLI, and more
+### Step 3: Choose Your Workflow
+After installation, pick ONE of these:
 
-### Powered by Top-Tier Free Models
+**Option A: Terminal Workflow** ⬅️ For developers who like command line
+```bash
+cd your-project
+ai-dev
+```
 
-| Phase | Model | Capabilities |
-|-------|-------|--------------|
-| **Planning** | MiMo-V2-Flash | Matches Claude Sonnet 4.5 performance |
-| **Coding** | KAT-Coder-Pro | 73% SWE-bench score |
-| **Testing** | Qwen3-Coder-480B | Advanced test generation |
-| **Analysis** | MiMo-V2-Flash | Deep reasoning enabled |
+**Option B: VS Code Workflow** ⬅️ For visual editors (easier!)
+1. Open VS Code
+2. Install "Continue" extension
+3. Add your API key
+4. Start coding!
 
----
-
-## ⚡ Features
-
-### 🎨 Multi-Phase Development Workflow
-
-Inspired by Gemini Conductor, AI Coder breaks down complex features into manageable phases:
-
-1. **Planning Phase** - Comprehensive architectural planning with requirements analysis
-2. **Setup Phase** - Automatic project structure and dependency setup
-3. **Implementation Phase** - Phase-by-phase feature development with auto-commits
-4. **Testing Phase** - Comprehensive test suite generation
-5. **Optimization Phase** - Code review, performance optimization, and documentation
-
-### 🛠️ Development Modes
-
-- **AI Conductor** (`ai-conductor`) - Multi-phase automated development for complex features
-- **Interactive Development** (`ai-dev`) - Real-time chat with AI assistant
-- **Planning** (`ai-plan`) - Generate comprehensive development plans
-- **Coding** (`ai-code`) - Implement features following optimized prompts
-- **Testing** (`ai-test`) - Write comprehensive test suites
-- **Debugging** (`ai-debug`) - Systematic debugging with reasoning
-- **Optimization** (`ai-optimize`) - Performance and code quality improvements
-
-### 🚀 Project Management
-
-- **New Projects** (`ai-new-project`) - Bootstrap new projects with complete planning
-- **Existing Projects** (`ai-onboard`) - Analyze and prepare existing projects for AI development
-- **Codebase Analysis** (`ai-analyze`) - Token-efficient analysis for large projects
-
-### 💎 Advanced Capabilities
-
-- Token-efficient codebase analysis for large projects
-- Automatic Git version control with conventional commits
-- Parallel tool execution for maximum efficiency
-- Aider CLI integration for file-based AI development
-- VS Code extension support (Kilo Code)
-- Production-ready system prompts derived from Cursor
+That's it! 🎉
 
 ---
 
-## 🚀 Quick Start
+## 🤔 How Does This Work? (Two Separate Workflows)
+
+There are **TWO COMPLETELY DIFFERENT** ways to use this toolkit. Pick the one you like:
+
+### Workflow 1️⃣: Terminal-Based (Using Aider CLI)
+
+**What it is:**
+- AI coding happens in your terminal
+- You type commands like `ai-code "add a login page"`
+- AI reads your files, makes changes, commits to git
+- All from the command line
+
+**How it works:**
+```bash
+# Go to your project
+cd my-project
+
+# Use AI to code
+ai-dev                              # Interactive chat with AI
+ai-code "add user authentication"   # Build a feature
+ai-test "test the login system"     # Write tests
+ai-debug "fix the signup bug"       # Debug issues
+```
+
+**When to use this:**
+- ✅ You like working in the terminal
+- ✅ You want automated git commits
+- ✅ You're comfortable with command-line tools
+- ✅ You want scripted/automated workflows
+
+**Requirements:**
+- Aider CLI installed (setup script tries to install it)
+- Python 3.8-3.13 (not 3.14)
+
+---
+
+### Workflow 2️⃣: VS Code Extension-Based (Using Continue/Cline)
+
+**What it is:**
+- AI coding happens inside VS Code
+- You use a sidebar chat interface
+- AI can read and edit your files visually
+- Point and click, no terminal needed
+
+**How it works:**
+1. Open VS Code
+2. Click the Continue icon in sidebar
+3. Chat with AI: "Add a login page"
+4. AI suggests code changes
+5. Accept or reject changes with one click
+
+**When to use this:**
+- ✅ You prefer visual editors
+- ✅ You want to see changes before accepting them
+- ✅ You like VS Code
+- ✅ You want the easiest option
+
+**Requirements:**
+- VS Code installed
+- "Continue" or "Cline" extension
+- Your OpenRouter API key
+
+---
+
+## 📊 Which Workflow Should I Choose?
+
+| Feature | Terminal (Aider) | VS Code (Continue) |
+|---------|------------------|-------------------|
+| **Ease of Use** | ⭐⭐⭐ Harder | ⭐⭐⭐⭐⭐ Easier |
+| **Visual Interface** | ❌ No | ✅ Yes |
+| **Auto Git Commits** | ✅ Yes | ⚠️ Manual |
+| **See Changes First** | ❌ No | ✅ Yes |
+| **Works in Terminal** | ✅ Yes | ❌ No |
+| **Multi-file Edits** | ✅ Great | ✅ Great |
+| **Setup Complexity** | ⭐⭐⭐ Medium | ⭐⭐⭐⭐⭐ Easy |
+
+**Recommendation for Beginners:** Start with VS Code + Continue extension!
+
+---
+
+## 📖 Detailed Installation Guide
 
 ### Prerequisites
+- macOS, Linux, or Windows
+- Python 3.8-3.13 (not 3.14)
+- Git installed
+- VS Code (optional, for Workflow 2)
 
-- Python 3.8 or higher
-- Git
-- pip3 (Python package manager)
-- OpenRouter API key ([Get free key](https://openrouter.ai/keys))
+### Installation Steps
 
-### One-Command Installation
-
-**macOS/Linux:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/AdityaDutta02/ai-coder/main/setup-unix.sh | bash
-```
-
-**Windows:**
-```powershell
-irm https://raw.githubusercontent.com/AdityaDutta02/ai-coder/main/setup-windows.ps1 | iex
-```
-
-The setup script will:
-- ✅ Install Aider CLI tool
-- ✅ Configure OpenRouter API integration
-- ✅ Set up all system prompts
-- ✅ Create development workflow scripts
-- ✅ Configure Git automation
-- ✅ Install VS Code extensions (optional)
-
-### Verify Installation
-
-```bash
-# Check installation
-ai-dev --version
-
-# Test with a simple task
-ai-dev "create a hello world script"
-```
-
----
-
-## 📦 Installation
-
-### Detailed Installation Steps
-
-1. **Clone the Repository**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/AdityaDutta02/ai-coder.git
    cd ai-coder
    ```
 
-2. **Run Setup Script**
+2. **Run the setup script**
 
-   **For macOS/Linux:**
+   **macOS/Linux:**
    ```bash
-   chmod +x setup-unix.sh
-   ./setup-unix.sh
+   bash setup-unix.sh
    ```
 
-   **For Windows:**
+   **Windows:**
    ```powershell
-   Set-ExecutionPolicy Bypass -Scope Process
    .\setup-windows.ps1
    ```
 
-3. **Enter OpenRouter API Key**
+3. **Enter your API key when prompted**
+   - Get it from [OpenRouter.ai/keys](https://openrouter.ai/keys)
+   - Paste it when the script asks
 
-   When prompted, paste your API key from [https://openrouter.ai/keys](https://openrouter.ai/keys)
+4. **Restart your terminal**
+   ```bash
+   # Close and reopen terminal, or run:
+   source ~/.zshrc
+   ```
 
-4. **Restart Terminal**
+5. **Test it worked**
+   ```bash
+   ai-dev --help
+   ```
 
-   Close and reopen your terminal to activate the new PATH settings
+   See help text? ✅ Success!
 
-### Manual Installation
+### What Gets Installed
 
-See [AI_CODING_SETUP_COMPLETE_GUIDE.md](./AI_CODING_SETUP_COMPLETE_GUIDE.md) for detailed manual installation instructions.
+The setup script installs:
+
+✅ **Configuration Files**
+- `~/.aider.conf.yml` - Your API key and settings
+- `~/.ai-coding-setup/` - Scripts and prompts
+
+✅ **Terminal Commands** (if Aider CLI installs)
+- `ai-dev` - Interactive AI coding
+- `ai-code` - Build features
+- `ai-plan` - Generate plans
+- `ai-test` - Write tests
+- `ai-debug` - Fix bugs
+- `ai-conductor` - Multi-phase development
+- `ai-new-project` - Create new projects
+- `ai-onboard` - Analyze existing projects
+
+✅ **System Prompts**
+- Optimized prompts for planning, coding, testing, debugging
 
 ---
 
-## 💻 Usage
+## 🎮 How to Use (Step-by-Step Examples)
 
-### New Projects
-
-Create a new project with full AI-assisted planning:
+### Example 1: Using Terminal Workflow (Aider CLI)
 
 ```bash
-# Simple new project
-ai-new-project "TaskManager API"
+# Step 1: Go to your project
+cd my-todo-app
 
-# With full options
-ai-new-project "TaskManager API" \
-  --type "web-api" \
-  --stack "python-fastapi" \
-  --features "auth,database,testing"
-```
-
-This will:
-1. Generate a comprehensive project plan
-2. Create project structure
-3. Set up Git repository
-4. Initialize development environment
-5. Open in VS Code with AI ready
-
-### Existing Projects
-
-Onboard an existing project for AI development:
-
-```bash
-# Navigate to your project
-cd /path/to/existing-project
-
-# Run onboarding wizard
-ai-onboard
-```
-
-This analyzes your codebase and:
-- Understands project structure
-- Detects tech stack
-- Identifies patterns and conventions
-- Sets up AI configuration
-- Prepares for AI-assisted development
-
-### Development Workflow
-
-#### Conductor Workflow (Recommended)
-
-Automated multi-phase development for complex features:
-
-```bash
-ai-conductor "Build a real-time chat feature with WebSocket support"
-```
-
-The AI will automatically:
-1. **Plan** - Analyze requirements and create architecture
-2. **Setup** - Create file structure and dependencies
-3. **Implement** - Build features phase by phase with auto-commits
-4. **Test** - Write comprehensive test suite
-5. **Optimize** - Review code quality and add documentation
-
-#### Interactive Development
-
-For exploratory work and rapid iteration:
-
-```bash
-# Start interactive session
+# Step 2: Start interactive AI session
 ai-dev
 
-# Now chat with the AI:
-You: "analyze the current authentication system"
-AI: [analyzes files, shows findings]
+# Step 3: Chat with AI
+> Add a dark mode toggle to the app
 
-You: "add OAuth2 support"
-AI: [creates plan, implements, tests]
+# AI will:
+# - Read your code
+# - Make changes
+# - Show you the diff
+# - Commit to git
 
-# Exit with: exit or Ctrl+D
+# Step 4: Exit when done
+> exit
 ```
 
-#### Phase-Specific Commands
+### Example 2: Using VS Code Workflow (Continue Extension)
 
-Run individual phases as needed:
+1. **Open your project in VS Code**
+   ```bash
+   cd my-todo-app
+   code .
+   ```
 
+2. **Click Continue icon** (in left sidebar)
+
+3. **Type in chat:**
+   ```
+   Add a dark mode toggle to the app
+   ```
+
+4. **Review changes** in the diff view
+
+5. **Click "Accept"** or "Reject"
+
+### Example 3: Quick Feature Development
+
+**Terminal:**
 ```bash
-# Planning only
-ai-plan "add payment processing with Stripe"
-
-# Coding only
-ai-code "implement user authentication"
-
-# Testing only
-ai-test "all API endpoints"
-
-# Debug/Fix
-ai-debug "login endpoint returns 500 error"
-
-# Optimize
-ai-optimize "improve database query performance"
+ai-code "Add a search bar to filter items"
 ```
+
+**VS Code:**
+Type in Continue chat: `Add a search bar to filter items`
+
+### Example 4: Writing Tests
+
+**Terminal:**
+```bash
+ai-test "Write tests for the login component"
+```
+
+**VS Code:**
+Type in Continue chat: `Write tests for the login component`
 
 ---
 
-## 🏗️ System Architecture
+## 🛠️ Available Commands (Terminal Workflow Only)
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                   AI Coder Platform                      │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │   Planning   │  │    Coding    │  │   Testing    │  │
-│  │ MiMo-V2-Flash│  │ KAT-Coder-Pro│  │Qwen3-Coder   │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  │
-│                                                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │  Debugging   │  │Optimization  │  │  Analysis    │  │
-│  │MiMo+Reasoning│  │ MiMo-V2-Flash│  │Qwen3-Coder   │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  │
-│                                                          │
-├─────────────────────────────────────────────────────────┤
-│                  OpenRouter API Layer                    │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────────┐           ┌──────────────┐           │
-│  │  Aider CLI   │           │  Kilo Code   │           │
-│  │  Integration │           │  VS Code Ext │           │
-│  └──────────────┘           └──────────────┘           │
-│                                                          │
-├─────────────────────────────────────────────────────────┤
-│              Git Version Control Layer                   │
-│      (Auto-commits, Conventional Commits)                │
-└─────────────────────────────────────────────────────────┘
-```
+| Command | What It Does | Example |
+|---------|--------------|---------|
+| `ai-dev` | Interactive chat with AI | `ai-dev` |
+| `ai-code` | Build a feature | `ai-code "add signup page"` |
+| `ai-plan` | Generate development plan | `ai-plan "add payment system"` |
+| `ai-test` | Write tests | `ai-test "test user auth"` |
+| `ai-debug` | Fix bugs | `ai-debug "fix login error"` |
+| `ai-conductor` | Multi-phase development | `ai-conductor "add chat feature"` |
+| `ai-new-project` | Create new project | `ai-new-project "Todo App"` |
+| `ai-onboard` | Analyze existing project | `ai-onboard` |
 
-### Project Structure
+**Note:** These commands DON'T work with VS Code extensions - they're separate workflows!
 
-```
-~/.ai-coding-setup/
-├── bin/                          # Executable workflow scripts
-│   ├── ai-new-project           # Create new projects
-│   ├── ai-onboard               # Onboard existing projects
-│   ├── ai-conductor             # Multi-phase orchestrator
-│   ├── ai-plan                  # Planning phase
-│   ├── ai-code                  # Coding phase
-│   ├── ai-test                  # Testing phase
-│   ├── ai-debug                 # Debug with reasoning
-│   ├── ai-dev                   # Interactive mode
-│   └── ai-analyze               # Codebase analysis
-│
-├── config/                       # Configuration files
-│   ├── aider.conf.yml           # Aider CLI config
-│   ├── kilo-config.json         # VS Code settings
-│   ├── models.yml               # Model configurations
-│   └── prompts/                 # System prompts
-│       ├── orchestrator.md      # Senior architect prompt
-│       ├── coder.md             # Full-stack developer prompt
-│       ├── debugger.md          # Expert debugger prompt
-│       └── tester.md            # QA engineer prompt
-│
-└── templates/                    # Project templates
-    ├── python-api/
-    ├── react-app/
-    ├── fullstack/
-    └── cli-tool/
-```
+---
+
+## 🎨 What AI Models Are Used?
+
+All models are **100% free** from OpenRouter:
+
+| Task | Model | Why This One |
+|------|-------|--------------|
+| **Planning** | MiMo-V2-Flash | Best at architecture & planning |
+| **Coding** | KAT-Coder-Pro | Best at writing code |
+| **Testing** | Qwen3-Coder | Best at writing tests |
+| **Debugging** | MiMo-V2-Flash | Best at problem-solving |
+
+These are configured automatically in `~/.aider.conf.yml`
 
 ---
 
 ## ⚙️ Configuration
 
-### Aider Configuration
+### Your API Key Location
+```bash
+~/.aider.conf.yml
+```
 
-The setup creates `~/.aider.conf.yml` with optimized settings:
-
+### Change AI Models
+Edit `~/.aider.conf.yml`:
 ```yaml
-# Model routing
+# Change these to any OpenRouter model
 architect-model: openrouter/xiaomi/mimo-v2-flash:free
 main-model: openrouter/kwaipilot/kat-coder-pro:free
 editor-model: openrouter/kwaipilot/kat-coder-pro:free
-
-# Context management
-map-tokens: 4096
-edit-format: diff
-map-refresh: auto
-
-# Git integration
-auto-commits: true
-dirty-commits: true
-attribute-commits: true
-
-# Performance
-cache-prompts: true
-stream: true
-show-diffs: true
 ```
 
-### VS Code Configuration (Kilo Code)
-
-Automatically configures VS Code for optimal AI assistance:
-
-```json
-{
-  "apiKeys": {
-    "openrouter": "YOUR_KEY_HERE"
-  },
-  "modelConfigurations": {
-    "coder": {
-      "model": "kwaipilot/kat-coder-pro:free",
-      "temperature": 0.2
-    },
-    "debugger": {
-      "model": "xiaomi/mimo-v2-flash:free",
-      "reasoning_enabled": true
-    }
-  }
-}
-```
+### For VS Code Extensions
+1. Open Continue settings
+2. Add custom model:
+   - Provider: OpenRouter
+   - API Key: (your key from `~/.aider.conf.yml`)
+   - Model: `kwaipilot/kat-coder-pro:free`
 
 ---
 
-## 📚 Usage Examples
+## 🗑️ Uninstallation
 
-### Example 1: Building a Complete SaaS Backend
-
-```bash
-# Create new project
-ai-new-project "PricingAPI SaaS" --type web-api
-
-# Start conductor workflow
-ai-conductor
-
-# AI automatically:
-# 1. Sets up FastAPI project structure
-# 2. Configures PostgreSQL with Alembic
-# 3. Implements tenant isolation
-# 4. Adds Stripe subscription management
-# 5. Creates usage tracking system
-# 6. Builds admin endpoints
-# 7. Implements webhook handlers
-# 8. Adds comprehensive tests
-# 9. Creates Docker deployment
-# 10. Generates API documentation
-
-# Each phase auto-commits to Git ✅
-```
-
-### Example 2: Adding Feature to Existing App
+To remove everything:
 
 ```bash
-cd ~/projects/my-app
-
-# Onboard project
-ai-onboard
-
-# Add complex feature
-ai-conductor "Add real-time collaborative editing with WebSocket"
-
-# AI will:
-# 1. Analyze existing architecture
-# 2. Design WebSocket integration
-# 3. Implement conflict resolution
-# 4. Add presence indicators
-# 5. Create client-side sync logic
-# 6. Write comprehensive tests
-# 7. Update documentation
+cd ai-coder
+bash uninstall.sh
 ```
 
-### Example 3: Debugging Production Issue
+This removes:
+- All AI coding scripts
+- Configuration files
+- PATH modifications
 
-```bash
-ai-debug "users report 500 errors on checkout - happens intermittently"
-
-# AI will:
-# 1. Search logs for errors
-# 2. Analyze checkout flow
-# 3. Check database queries
-# 4. Look for race conditions
-# 5. Review recent changes
-# 6. Identify root cause
-# 7. Implement fix with retry logic
-# 8. Add monitoring
-# 9. Write regression test
-```
-
-### Example 4: Interactive Development
-
-```bash
-ai-dev
-
-You: "create a REST API for a todo app with FastAPI"
-AI: [Creates complete API with CRUD operations]
-
-You: "add user authentication with JWT"
-AI: [Implements auth system with login/register]
-
-You: "write tests for all endpoints"
-AI: [Generates comprehensive test suite with pytest]
-
-You: "deploy with Docker"
-AI: [Creates Dockerfile and docker-compose.yml]
-```
+This KEEPS:
+- VS Code and extensions
+- Python
+- Your API key (backs it up)
 
 ---
 
-## 💰 Cost Comparison
+## 🆘 Troubleshooting
 
-| Tool | Monthly Cost | Requests | Features |
-|------|--------------|----------|----------|
-| **AI Coder** | **$0** | **Unlimited** | Multi-phase dev, planning, testing, debugging |
-| Cursor Pro | $20 | 500/month | AI coding, chat |
-| GitHub Copilot | $10 | Limited | Code completion only |
-| Claude Pro | $20 | 100 msgs/day | Chat, limited coding |
-| Replit Agent | $25 | Limited | Agent-based development |
+### "command not found" when running ai-dev
 
-**Annual Savings: $120-300** 💰
+**Fix 1:** Restart your terminal
+
+**Fix 2:** Reload shell config
+```bash
+source ~/.zshrc
+```
+
+**Fix 3:** Add to PATH manually
+```bash
+export PATH="$HOME/.ai-coding-setup/bin:$PATH"
+```
+
+### Aider installation failed (Python 3.14 issue)
+
+**Solution:** Use VS Code workflow instead!
+1. Install "Continue" extension in VS Code
+2. Much easier and works perfectly!
+
+**Or:** Use Python 3.11-3.13
+```bash
+brew install python@3.13
+```
+
+### Which workflow should I use?
+
+**If you're not sure:** Use VS Code + Continue extension!
+- Easier to learn
+- Visual interface
+- No Python version issues
+
+### AI is not responding or giving errors
+
+1. **Check your API key**
+   ```bash
+   cat ~/.aider.conf.yml
+   ```
+
+2. **Verify API key is valid** at [OpenRouter.ai](https://openrouter.ai)
+
+3. **Check you have credits** (free tier should have credits)
+
+### VS Code extension can't find API key
+
+The terminal commands (ai-dev, etc.) and VS Code extensions **don't share settings**.
+
+**To use Continue:**
+1. Open Continue extension settings
+2. Add OpenRouter provider
+3. Paste your API key manually
+4. Select model: `kwaipilot/kat-coder-pro:free`
 
 ---
 
-## 🔧 Troubleshooting
+## 💡 Tips & Best Practices
 
-### API Key Issues
+### For Terminal Workflow (Aider)
 
-```bash
-# Verify your key
-cat ~/.aider.conf.yml | grep openrouter-api-key
+✅ **DO:**
+- Start in a git repository
+- Commit your work before using AI
+- Be specific in your requests
+- Review changes before accepting
 
-# Test the key
-curl https://openrouter.ai/api/v1/auth/key \
-  -H "Authorization: Bearer YOUR_KEY"
-```
+❌ **DON'T:**
+- Use in non-git directories (will fail)
+- Give vague instructions
+- Skip reviewing AI's changes
 
-### Model Not Responding
+### For VS Code Workflow (Continue)
 
-```bash
-# Check OpenRouter status
-curl https://openrouter.ai/api/v1/models | grep mimo
+✅ **DO:**
+- Open your full project folder
+- Give context about what you want
+- Review diffs carefully
+- Accept changes incrementally
 
-# Try different model
-ai-code --model "qwen/qwen3-coder:free" "test feature"
-```
+❌ **DON'T:**
+- Open single files (open the project)
+- Accept all changes blindly
+- Forget to save files
 
-### Git Configuration
+---
 
-```bash
-# Configure git if not set
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
+## 📚 More Documentation
 
-# Initialize repo if missing
-git init
-```
-
-### Aider Issues
-
-```bash
-# Refresh repository map
-aider --map-refresh
-
-# Manually add files to context
-aider --file src/main.py --file src/utils.py
-```
-
-For more detailed troubleshooting, see [AI_CODING_SETUP_COMPLETE_GUIDE.md](./AI_CODING_SETUP_COMPLETE_GUIDE.md#troubleshooting).
+- [Complete Installation Guide](INSTALL.md)
+- [System Prompts](~/.ai-coding-setup/config/prompts/)
+- [Aider Documentation](https://aider.chat/docs/)
+- [Continue Extension Docs](https://continue.dev/docs)
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
+Found a bug? Have an idea?
 
-### Ways to Contribute
-
-- 🐛 Report bugs and issues
-- 💡 Suggest new features or improvements
-- 📝 Improve documentation
-- 🔧 Submit pull requests
-- 🎨 Share better prompts or workflows
-- ⭐ Star the repository
-
-### Development Setup
-
-```bash
-# Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/ai-coder.git
-cd ai-coder
-
-# Create a feature branch
-git checkout -b feature/your-feature-name
-
-# Make your changes and test
-./setup-unix.sh  # or setup-windows.ps1
-
-# Commit with conventional commits
-git commit -m "feat: add new feature"
-
-# Push and create pull request
-git push origin feature/your-feature-name
-```
-
-### Contribution Guidelines
-
-- Follow existing code style and conventions
-- Write clear commit messages using [Conventional Commits](https://www.conventionalcommits.org/)
-- Add tests for new features
-- Update documentation as needed
-- Be respectful and constructive in discussions
+1. Open an issue: [GitHub Issues](https://github.com/AdityaDutta02/ai-coder/issues)
+2. Submit a PR
+3. Share feedback!
 
 ---
 
-## 📜 License
+## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2024 Aditya Dutta
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
+MIT License - Use it however you want!
 
 ---
 
-## 🙏 Acknowledgments
+## ⭐ Star This Repo!
 
-This project stands on the shoulders of giants:
-
-- **[Cursor](https://cursor.com/)** - Inspiration for system prompts and development workflows
-- **[Claude Code](https://claude.ai/)** - Advanced AI coding patterns and techniques
-- **[Gemini Conductor](https://ai.google.dev/)** - Multi-phase development methodology
-- **[Aider](https://aider.chat/)** - Excellent CLI tool for AI pair programming
-- **[OpenRouter](https://openrouter.ai/)** - Unified API for accessing free AI models
-- **Open Source Community** - For the amazing free models powering this toolkit
-
-### Model Credits
-
-- **MiMo-V2-Flash** by Xiaomi - Planning and architecture
-- **KAT-Coder-Pro** by KwaiPilot - Code implementation
-- **Qwen3-Coder-480B** by Alibaba - Testing and analysis
+If this helped you, give it a star! ⭐
 
 ---
 
-## 📞 Support & Community
+**Built with ❤️ to make AI coding accessible to everyone**
 
-- **Issues**: [GitHub Issues](https://github.com/AdityaDutta02/ai-coder/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/AdityaDutta02/ai-coder/discussions)
-- **Documentation**: [Complete Guide](./AI_CODING_SETUP_COMPLETE_GUIDE.md)
-
----
-
-## 🗺️ Roadmap
-
-### Upcoming Features
-
-- [ ] Support for more programming languages (Go, Rust, Java)
-- [ ] Web UI for easier interaction
-- [ ] Cloud deployment automation
-- [ ] Team collaboration features
-- [ ] Custom model fine-tuning support
-- [ ] Integration with more IDEs (JetBrains, Neovim)
-- [ ] Advanced debugging with trace analysis
-- [ ] Performance profiling integration
-
-### Version History
-
-- **v1.0.0** - Initial release with core features
-  - Multi-phase development workflow
-  - Aider CLI integration
-  - VS Code extension support
-  - Production-ready system prompts
-
----
-
-## 🌟 Star History
-
-If you find this project helpful, please consider giving it a star! ⭐
-
-[![Star History Chart](https://api.star-history.com/svg?repos=AdityaDutta02/ai-coder&type=Date)](https://star-history.com/#AdityaDutta02/ai-coder&Date)
-
----
-
-<div align="center">
-
-**Built with ❤️ by developers, for developers**
-
-**Ready to build? [Get Started Now](#-quick-start) 🚀**
-
-[⬆ Back to Top](#-ai-coder---production-ai-development-toolkit)
-
-</div>
+**Questions?** Open an issue on GitHub!
