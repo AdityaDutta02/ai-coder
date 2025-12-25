@@ -67,9 +67,10 @@ create_directories() {
 # Check prerequisites
 check_prerequisites() {
     print_header "Checking Prerequisites"
-    
+
     local missing_deps=()
-    
+    PYTHON_CMD="python3"  # Default Python command
+
     # Check Python
     if command_exists python3; then
         PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
@@ -80,24 +81,29 @@ check_prerequisites() {
 
         # Check if Python version is 3.14 or higher (incompatible with aider-chat dependencies)
         if [ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -ge 14 ]; then
-            print_error "Python 3.14+ is not yet supported by aider-chat dependencies"
-            echo ""
-            echo "Aider requires Python 3.11-3.13 due to compatibility issues with numpy and other compiled dependencies."
-            echo ""
-            echo "Solutions:"
-            echo "  1. Install Python 3.13: brew install python@3.13"
-            echo "  2. Use pyenv to manage multiple Python versions: pyenv install 3.13"
-            echo "  3. Create a virtual environment with Python 3.13"
-            echo ""
-            echo "After installing Python 3.13, ensure it's the default python3 or set up your environment,"
-            echo "then run this script again:"
-            echo "  bash setup-unix.sh"
-            echo ""
-            echo "Or if you have multiple Python versions:"
-            echo "  export PATH=\"/usr/local/opt/python@3.13/bin:\$PATH\""
-            echo "  bash setup-unix.sh"
-            echo ""
-            exit 1
+            print_warning "Python 3.14+ detected - checking for Python 3.13..."
+
+            # Check if python3.13 is available
+            if command_exists python3.13; then
+                PYTHON_313_VERSION=$(python3.13 --version | cut -d' ' -f2)
+                print_success "Found Python $PYTHON_313_VERSION - will use python3.13"
+                PYTHON_CMD="python3.13"
+                export PYTHON_CMD
+            else
+                print_error "Python 3.14+ is not yet supported by aider-chat dependencies"
+                echo ""
+                echo "Aider requires Python 3.11-3.13 due to compatibility issues with numpy and other compiled dependencies."
+                echo ""
+                echo "Solutions:"
+                echo "  1. Install Python 3.13: brew install python@3.13"
+                echo "  2. Use pyenv to manage multiple Python versions: pyenv install 3.13"
+                echo "  3. Create a virtual environment with Python 3.13"
+                echo ""
+                echo "After installing Python 3.13, run this script again:"
+                echo "  bash setup-unix.sh"
+                echo ""
+                exit 1
+            fi
         fi
 
         # Check minimum version
@@ -148,14 +154,14 @@ install_aider() {
     print_header "Installing Aider"
 
     # First, upgrade pip, setuptools, and wheel to avoid build issues
-    print_message "$YELLOW" "Upgrading pip, setuptools, and wheel..."
-    pip3 install --upgrade --user pip setuptools wheel
+    print_message "$YELLOW" "Upgrading pip, setuptools, and wheel using $PYTHON_CMD..."
+    $PYTHON_CMD -m pip install --upgrade --user pip setuptools wheel
 
     if command_exists aider; then
         print_warning "Aider already installed, upgrading..."
-        pip3 install --upgrade --user aider-chat
+        $PYTHON_CMD -m pip install --upgrade --user aider-chat
     else
-        pip3 install --user aider-chat
+        $PYTHON_CMD -m pip install --user aider-chat
     fi
 
     print_success "Aider installed successfully"
