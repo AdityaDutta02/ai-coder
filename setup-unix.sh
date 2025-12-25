@@ -122,11 +122,18 @@ check_prerequisites() {
         missing_deps+=("Git")
     fi
     
-    # Check pip
+    # Check pip and pipx
     if command_exists pip3; then
         print_success "pip3 found"
     else
         missing_deps+=("pip3")
+    fi
+
+    # Check for pipx (preferred for installing aider)
+    if command_exists pipx; then
+        print_success "pipx found"
+    else
+        print_warning "pipx not found - will install it"
     fi
     
     # Check if VS Code is installed
@@ -153,18 +160,37 @@ check_prerequisites() {
 install_aider() {
     print_header "Installing Aider"
 
-    # First, upgrade pip, setuptools, and wheel to avoid build issues
-    print_message "$YELLOW" "Upgrading pip, setuptools, and wheel using $PYTHON_CMD..."
-    $PYTHON_CMD -m pip install --upgrade --user --break-system-packages pip setuptools wheel
+    # Install pipx if not present
+    if ! command_exists pipx; then
+        print_message "$YELLOW" "Installing pipx..."
+        $PYTHON_CMD -m pip install --user --break-system-packages pipx
+        $PYTHON_CMD -m pipx ensurepath
+
+        # Add pipx to current PATH
+        export PATH="$HOME/.local/bin:$PATH"
+    fi
+
+    # Install aider using pipx (handles virtual environment automatically)
+    print_message "$YELLOW" "Installing aider-chat using pipx (this may take a few minutes)..."
+    print_message "$YELLOW" "pipx creates an isolated environment, avoiding dependency conflicts..."
 
     if command_exists aider; then
         print_warning "Aider already installed, upgrading..."
-        $PYTHON_CMD -m pip install --upgrade --user --break-system-packages aider-chat
+        pipx upgrade aider-chat --python $PYTHON_CMD 2>&1 || \
+        pipx install aider-chat --python $PYTHON_CMD --force
     else
-        $PYTHON_CMD -m pip install --user --break-system-packages aider-chat
+        pipx install aider-chat --python $PYTHON_CMD
     fi
 
-    print_success "Aider installed successfully"
+    # Verify installation
+    if command_exists aider; then
+        AIDER_VERSION=$(aider --version 2>&1 | head -n1 || echo "unknown")
+        print_success "Aider installed successfully: $AIDER_VERSION"
+    else
+        print_error "Aider installation failed"
+        echo "Try running: export PATH=\"\$HOME/.local/bin:\$PATH\""
+        exit 1
+    fi
 }
 
 # Get OpenRouter API Key
@@ -918,13 +944,13 @@ add_to_path() {
     else
         echo "" >> "$shell_config"
         echo "# AI Coding Setup" >> "$shell_config"
-        echo "export PATH=\"\$HOME/.ai-coding-setup/bin:\$PATH\"" >> "$shell_config"
+        echo "export PATH=\"\$HOME/.local/bin:\$HOME/.ai-coding-setup/bin:\$PATH\"" >> "$shell_config"
         print_success "Added to PATH in $shell_config"
         print_warning "Run: source $shell_config (or restart terminal)"
     fi
-    
+
     # Temporarily add to current session
-    export PATH="$BIN_DIR:$PATH"
+    export PATH="$HOME/.local/bin:$BIN_DIR:$PATH"
 }
 
 # Install VS Code extension
