@@ -108,11 +108,15 @@ ai-debug "fix the signup bug"       # Debug issues
 - ✅ You want to see changes before accepting them
 - ✅ You like VS Code
 - ✅ You want the easiest option
+- ✅ For daily coding and quick edits
 
 **Requirements:**
 - VS Code installed
 - "Continue" or "Cline" extension
 - Your OpenRouter API key
+
+**⚠️ Important Limitation:**
+VS Code extensions are **generic AI chat** - they don't have the specialized multi-phase workflows (conductor, automated planning, etc.). For complex features, you'll want to use the terminal commands!
 
 ---
 
@@ -124,11 +128,132 @@ ai-debug "fix the signup bug"       # Debug issues
 | **Visual Interface** | ❌ No | ✅ Yes |
 | **Auto Git Commits** | ✅ Yes | ⚠️ Manual |
 | **See Changes First** | ❌ No | ✅ Yes |
-| **Works in Terminal** | ✅ Yes | ❌ No |
-| **Multi-file Edits** | ✅ Great | ✅ Great |
+| **Specialized Workflows** | ✅ Yes (conductor, plan, debug) | ❌ No (manual chat only) |
+| **Multi-Phase Automation** | ✅ Yes | ❌ No |
+| **Daily Coding** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Complex Features** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
 | **Setup Complexity** | ⭐⭐⭐ Medium | ⭐⭐⭐⭐⭐ Easy |
 
-**Recommendation for Beginners:** Start with VS Code + Continue extension!
+### 🎯 Best Approach: Use BOTH!
+
+**Primary (Daily Work):** VS Code + Continue
+- Quick edits and features
+- Visual feedback
+- Easy to use
+
+**Secondary (Complex Tasks):** Terminal Commands
+- `ai-conductor` for multi-phase features
+- `ai-plan` for detailed planning
+- `ai-debug` for systematic debugging
+
+This gives you the best of both worlds!
+
+---
+
+## 🚀 Understanding Specialized Workflows (Terminal Only!)
+
+The terminal commands provide **powerful multi-phase automation** that VS Code extensions can't match:
+
+### `ai-conductor` - The Power Tool 🎯
+
+**What it does:** Automates entire feature development from planning to testing
+
+**How it works:**
+```bash
+ai-conductor "Add user authentication"
+```
+
+**Automatic phases:**
+1. **Planning** (MiMo-V2-Flash)
+   - Creates PLAN.md with full architecture
+   - Requirements analysis
+   - Phase breakdown
+   - Risk analysis
+
+2. **Implementation** (KAT-Coder-Pro)
+   - Builds feature phase by phase
+   - Auto-commits after each phase
+   - Follows the plan automatically
+
+3. **Testing** (Qwen3-Coder - optional)
+   - Generates comprehensive tests
+   - Unit + integration tests
+   - Edge cases and error handling
+
+**This is like having a senior developer automate everything!**
+
+### `ai-plan` - Strategic Planning 📋
+
+```bash
+ai-plan "Add payment integration"
+```
+
+Creates detailed development plan with:
+- Requirements analysis
+- Architecture design
+- Step-by-step tasks
+- Technical decisions
+- Risk mitigation
+- Saved to PLAN.md
+
+### `ai-debug` - Systematic Debugging 🐛
+
+```bash
+ai-debug "Users can't login after signup"
+```
+
+Uses reasoning to:
+1. Understand the problem
+2. Gather information
+3. Reproduce the issue
+4. Analyze root cause
+5. Develop solution
+6. Verify fix
+
+### `ai-test` - Comprehensive Testing 🧪
+
+```bash
+ai-test "Test the checkout flow"
+```
+
+Generates:
+- Unit tests
+- Integration tests
+- Edge cases
+- Error scenarios
+- AAA pattern (Arrange, Act, Assert)
+
+### How to Use These with VS Code
+
+**Best Practice:** Combine both workflows!
+
+```bash
+# Terminal: Generate plan for complex feature
+ai-plan "Add real-time chat"
+
+# Review PLAN.md
+
+# Terminal: Use conductor for automated implementation
+ai-conductor "Implement the chat feature from PLAN.md"
+
+# VS Code: Make small tweaks and adjustments
+# Open Continue extension
+# Chat: "Update the chat UI styling"
+
+# Terminal: Generate tests
+ai-test "Test the chat messaging"
+```
+
+---
+
+## 🤔 What About Kilo Code?
+
+**Kilo Code** was mentioned in the original setup but:
+- ❌ It's outdated/less maintained
+- ❌ Not as popular as Continue
+- ❌ You don't need it
+
+**Recommendation:** Ignore Kilo Code references, use Continue instead!
 
 ---
 
