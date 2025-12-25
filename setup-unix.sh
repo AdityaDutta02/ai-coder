@@ -180,15 +180,15 @@ install_aider() {
     fi
 
     # Install aider using pipx (handles virtual environment automatically)
-    print_message "$YELLOW" "Installing aider-chat using pipx (this may take a few minutes)..."
+    print_message "$YELLOW" "Installing aider using pipx (this may take a few minutes)..."
     print_message "$YELLOW" "pipx creates an isolated environment, avoiding dependency conflicts..."
 
     if command_exists aider; then
         print_warning "Aider already installed, upgrading..."
-        pipx upgrade aider-chat --python $PYTHON_CMD 2>&1 || \
-        pipx install aider-chat --python $PYTHON_CMD --force
+        pipx upgrade aider --python $PYTHON_CMD 2>&1 || \
+        pipx install aider --python $PYTHON_CMD --force
     else
-        pipx install aider-chat --python $PYTHON_CMD
+        pipx install aider --python $PYTHON_CMD
     fi
 
     # Verify installation
