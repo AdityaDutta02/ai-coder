@@ -80,7 +80,9 @@ function Test-Prerequisites {
                 Write-Host "  2. Use pyenv-win to manage multiple Python versions"
                 Write-Host "  3. Install via Microsoft Store (search for Python 3.13)"
                 Write-Host ""
-                Write-Host "After installing Python 3.13, ensure it's in your PATH and run this script again."
+                Write-Host "After installing Python 3.13, ensure it's the default 'python' command,"
+                Write-Host "then run this script again:"
+                Write-Host "  .\setup-windows.ps1"
                 Write-Host ""
                 exit 1
             }

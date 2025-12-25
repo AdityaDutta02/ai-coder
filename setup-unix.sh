@@ -89,8 +89,13 @@ check_prerequisites() {
             echo "  2. Use pyenv to manage multiple Python versions: pyenv install 3.13"
             echo "  3. Create a virtual environment with Python 3.13"
             echo ""
-            echo "After installing Python 3.13, run this script using:"
-            echo "  python3.13 setup-unix.sh"
+            echo "After installing Python 3.13, ensure it's the default python3 or set up your environment,"
+            echo "then run this script again:"
+            echo "  bash setup-unix.sh"
+            echo ""
+            echo "Or if you have multiple Python versions:"
+            echo "  export PATH=\"/usr/local/opt/python@3.13/bin:\$PATH\""
+            echo "  bash setup-unix.sh"
             echo ""
             exit 1
         fi
